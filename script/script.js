@@ -1,11 +1,29 @@
 const oszlop=5;
 const sor=4;
 
+function visszaFordit(){
+    console.log('Most fordult vissza');
+}
+
+function megfordit(){
+    let nyitott = document.getElementsByClassName('open').length;
+    if(nyitott<2){
+        if(nyitott==0){
+            setTimeout(function(){
+                visszaFordit();
+            },2000);
+        }
+        this.classList.add("open");
+        this.style.backgroundImage=this.dataset.bgimg;
+    }
+};
+
 for (let i = 0; i < sor; i++){
     let sor=document.createElement('div');
     sor.className='sor';
     for (let j = 0; j < oszlop; j++) {
         let cella = document.createElement('div');
+        cella.onclick=megfordit;
         cella.className='cella';
         sor.appendChild(cella);
     }
@@ -23,7 +41,7 @@ for (let i = 1; i <= kepSzam; i++) {
         if(!kepCella.dataset.bgimg){
             kepCella.setAttribute("data-bgimg",'url("./img/'+i+'.png")');
             //kepCella.dataset.img='url("./img/'+i+'.png")';
-            kepCella.style.backgroundImage='url("./img/'+i+'.png")';
+            //kepCella.style.backgroundImage='url("./img/'+i+'.png")';
         }
         else{j--};
     }
